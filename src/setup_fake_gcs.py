@@ -8,7 +8,7 @@ import os
 import shutil
 from pathlib import Path
 
-FAKE_GCS_ROOT = os.getenv("FAKE_GCS_ROOT", "./fake_gcs_data")
+FAKE_GCS_ROOT = os.getenv("FAKE_GCS_ROOT", "../fake_gcs_data")
 BUCKET_NAME = "my-test-bucket"
 SAMPLE_PDF_PATH = "pdfs/sample-document.pdf"
 

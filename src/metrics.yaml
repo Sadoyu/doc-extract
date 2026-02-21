@@ -1,0 +1,72 @@
+# Metrics configuration used by the extractor.
+# Each metric should have: name, synonyms (optional), definition, and an example value.
+metrics:
+  - name: fund_name
+    synonyms: ["fund name", "fund", "name"]
+    definition: "The official name of the investment fund"
+    example: "Global Equity Fund"
+
+  - name: fund_aum
+    synonyms: ["assets under management", "AUM", "total assets"]
+    definition: "Total Assets Under Management (AUM) - market value of assets the fund manages"
+    example: "$1,200,000,000"
+
+  - name: nav_per_share
+    synonyms: ["nav per share", "net asset value", "NAV"]
+    definition: "Net Asset Value (NAV) per share or unit"
+    example: "$12.34"
+
+  - name: quarterly_return
+    synonyms: ["quarterly return", "qtr return", "quarter return"]
+    definition: "Return for the most recent quarter"
+    example: "3.5%"
+
+  - name: ytd_return
+    synonyms: ["year to date return", "ytd return"]
+    definition: "Year-to-date return"
+    example: "9.1%"
+
+  - name: one_year_return
+    synonyms: ["one year return", "12 month return"]
+    definition: "Return over the past 12 months"
+    example: "12.3%"
+
+  - name: expense_ratio
+    synonyms: ["expense ratio", "expense" ]
+    definition: "Fund expense ratio (percentage of assets used to cover operating expenses)"
+    example: "0.85%"
+
+  - name: net_flows
+    synonyms: ["net flows", "net inflows", "net outflows"]
+    definition: "Net investor flows into or out of the fund during the period"
+    example: "$150,000,000"
+
+  - name: turnover_ratio
+    synonyms: ["turnover", "portfolio turnover"]
+    definition: "Portfolio turnover ratio"
+    example: "25%"
+
+  - name: max_drawdown
+    synonyms: ["maximum drawdown", "max drawdown"]
+    definition: "Maximum observed loss from a peak to a trough"
+    example: "-10.5%"
+
+  - name: benchmark_return
+    synonyms: ["benchmark return", "index return"]
+    definition: "Return of the fund benchmark for the same period"
+    example: "3.8%"
+
+  - name: sharpe_ratio
+    synonyms: ["sharpe", "sharpe ratio"]
+    definition: "Sharpe ratio (risk-adjusted return)"
+    example: "0.95"
+
+  - name: alpha
+    synonyms: []
+    definition: "Manager alpha vs benchmark"
+    example: "0.5"
+
+  - name: beta
+    synonyms: []
+    definition: "Beta (fund sensitivity to market movements)"
+    example: "0.9"

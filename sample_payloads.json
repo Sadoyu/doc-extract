@@ -1,0 +1,77 @@
+{
+  "description": "Sample payloads for the /process endpoint",
+  "payloads": {
+    "1_direct_json": {
+      "description": "Direct JSON format - simplest format",
+      "payload": {
+        "bucket": "my-test-bucket",
+        "name": "pdfs/sample-document.pdf"
+      },
+      "curl_example": "curl -X POST http://localhost:8000/process -H 'Content-Type: application/json' -d '{\"bucket\": \"my-test-bucket\", \"name\": \"pdfs/sample-document.pdf\"}'"
+    },
+    "2_pubsub_push_format": {
+      "description": "Pub/Sub push subscription format with base64 encoded data",
+      "payload": {
+        "message": {
+          "data": "eyJidWNrZXQiOiAibXktdGVzdC1idWNrZXQiLCAibmFtZSI6ICJwZGZzL3NhbXBsZS1kb2N1bWVudC5wZGYifQ==",
+          "attributes": {},
+          "messageId": "1234567890",
+          "publishTime": "2025-02-21T10:00:00Z"
+        },
+        "subscription": "projects/my-project/subscriptions/my-subscription"
+      },
+      "note": "The 'data' field contains base64 encoded JSON: {\"bucket\": \"my-test-bucket\", \"name\": \"pdfs/sample-document.pdf\"}",
+      "curl_example": "curl -X POST http://localhost:8000/process -H 'Content-Type: application/json' -d '{\"message\": {\"data\": \"eyJidWNrZXQiOiAibXktdGVzdC1idWNrZXQiLCAibmFtZSI6ICJwZGZzL3NhbXBsZS1kb2N1bWVudC5wZGYifQ==\"}}'"
+    },
+    "3_pubsub_attributes_format": {
+      "description": "Pub/Sub message with attributes instead of data field",
+      "payload": {
+        "message": {
+          "attributes": {
+            "bucket": "my-test-bucket",
+            "name": "pdfs/sample-document.pdf"
+          },
+          "messageId": "1234567890",
+          "publishTime": "2025-02-21T10:00:00Z"
+        }
+      },
+      "curl_example": "curl -X POST http://localhost:8000/process -H 'Content-Type: application/json' -d '{\"message\": {\"attributes\": {\"bucket\": \"my-test-bucket\", \"name\": \"pdfs/sample-document.pdf\"}}}'"
+    },
+    "4_base64_data_format": {
+      "description": "Direct base64 data format (without message wrapper)",
+      "payload": {
+        "data": "eyJidWNrZXQiOiAibXktdGVzdC1idWNrZXQiLCAibmFtZSI6ICJwZGZzL3NhbXBsZS1kb2N1bWVudC5wZGYifQ=="
+      },
+      "note": "The 'data' field contains base64 encoded JSON",
+      "curl_example": "curl -X POST http://localhost:8000/process -H 'Content-Type: application/json' -d '{\"data\": \"eyJidWNrZXQiOiAibXktdGVzdC1idWNrZXQiLCAibmFtZSI6ICJwZGZzL3NhbXBsZS1kb2N1bWVudC5wZGYifQ==\"}'"
+    },
+    "5_full_pubsub_format": {
+      "description": "Full Pub/Sub push message format with all fields",
+      "payload": {
+        "message": {
+          "data": "eyJidWNrZXQiOiAibXktdGVzdC1idWNrZXQiLCAibmFtZSI6ICJwZGZzL3NhbXBsZS1kb2N1bWVudC5wZGYifQ==",
+          "attributes": {
+            "eventType": "OBJECT_FINALIZE",
+            "eventId": "1234567890",
+            "bucketId": "my-test-bucket",
+            "objectId": "pdfs/sample-document.pdf"
+          },
+          "messageId": "1234567890",
+          "publishTime": "2025-02-21T10:00:00Z"
+        },
+        "subscription": "projects/my-project/subscriptions/my-subscription"
+      },
+      "curl_example": "curl -X POST http://localhost:8000/process -H 'Content-Type: application/json' -d @sample_pubsub_payload.json"
+    }
+  },
+  "base64_encoding_helper": {
+    "note": "To create base64 encoded data, use Python:",
+    "python_code": "import json\nimport base64\n\nmessage = {\"bucket\": \"my-test-bucket\", \"name\": \"pdfs/sample-document.pdf\"}\ndata_str = json.dumps(message)\ndata_b64 = base64.b64encode(data_str.encode('utf-8')).decode('utf-8')\nprint(data_b64)"
+  },
+  "fake_gcs_setup": {
+    "note": "When using fake GCS, files should be placed in:",
+    "path": "./fake_gcs_data/{bucket_name}/{file_path}",
+    "example": "./fake_gcs_data/my-test-bucket/pdfs/sample-document.pdf",
+    "output_location": "./fake_gcs_data/{bucket_name}/output/{filename}_metrics.csv"
+  }
+}

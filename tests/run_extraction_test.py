@@ -1,7 +1,7 @@
 import sys, json
 sys.path.insert(0, '/Users/saikiranchandolu/Workspace/Github/doc-extract')
 from src import main
-from src.LenientOllamaFormatHandler import parse_output
+from src.utils.LenientOllamaFormatHandler import parse_output
 
 metrics_config = main.load_metrics_config('metrics.yaml')
 text = 'NAV per share: $12.34. AUM: $1,000,000. Quarterly return: 2.5%.'

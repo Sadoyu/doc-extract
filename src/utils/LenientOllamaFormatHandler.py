@@ -4,7 +4,7 @@ from langextract.core import format_handler as fh
 from langextract.core import exceptions as lx_exceptions
 from langextract.core.data import EXTRACTIONS_KEY, FormatType
 
-from .ollamaSetup import _parse_ollama_json
+from src.ollamaSetup import _parse_ollama_json
 
 # Define module-level defaults expected by callers/importers.
 # These were previously referenced before being defined, causing a NameError.

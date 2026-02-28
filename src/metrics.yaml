@@ -1,72 +1,253 @@
 # Metrics configuration used by the extractor.
 # Each metric should have: name, synonyms (optional), definition, and an example value.
+# Comprehensive metrics for fund performance analysis by fund managers
 metrics:
+  # Basic Fund Information
   - name: fund_name
-    synonyms: ["fund name", "fund", "name"]
-    definition: "The official name of the investment fund"
-    example: "Global Equity Fund"
+    synonyms: ["fund name", "fund", "name", "portfolio name"]
+    definition: "The official name of the investment fund or portfolio"
+    example: "Global Equity Growth Fund"
 
+  - name: fund_ticker
+    synonyms: ["ticker", "ticker symbol", "fund ticker"]
+    definition: "Ticker symbol or identifier of the fund"
+    example: "GEQUX"
+
+  - name: investment_objective
+    synonyms: ["investment objective", "objective", "strategy", "fund strategy"]
+    definition: "The stated investment objective or strategy of the fund"
+    example: "Growth with Income"
+
+  - name: inception_date
+    synonyms: ["inception", "inception date", "fund inception", "launch date"]
+    definition: "Date when the fund was established or inception date"
+    example: "01/15/2010"
+
+  # Assets Under Management
   - name: fund_aum
-    synonyms: ["assets under management", "AUM", "total assets"]
+    synonyms: ["assets under management", "AUM", "total assets", "assets managed"]
     definition: "Total Assets Under Management (AUM) - market value of assets the fund manages"
-    example: "$1,200,000,000"
+    example: "$2,500,000,000"
 
+  - name: portfolio_value
+    synonyms: ["portfolio value", "total portfolio value", "account value", "market value"]
+    definition: "Current total market value of all holdings in the portfolio"
+    example: "$372,687"
+
+  # Net Asset Value Metrics
   - name: nav_per_share
-    synonyms: ["nav per share", "net asset value", "NAV"]
-    definition: "Net Asset Value (NAV) per share or unit"
-    example: "$12.34"
+    synonyms: ["nav per share", "net asset value", "NAV", "price per share", "unit value"]
+    definition: "Net Asset Value (NAV) per share or unit - total assets divided by number of shares outstanding"
+    example: "$45.67"
 
+  - name: nav_change
+    synonyms: ["nav change", "nav movement", "price change"]
+    definition: "Change in NAV per share during the reporting period"
+    example: "$1.23"
+
+  # Performance Returns - Core Metrics
   - name: quarterly_return
-    synonyms: ["quarterly return", "qtr return", "quarter return"]
-    definition: "Return for the most recent quarter"
-    example: "3.5%"
+    synonyms: ["quarterly return", "qtr return", "quarter return", "q return", "current quarter"]
+    definition: "Return for the most recent quarter (net of fees)"
+    example: "4.2%"
 
   - name: ytd_return
-    synonyms: ["year to date return", "ytd return"]
-    definition: "Year-to-date return"
-    example: "9.1%"
+    synonyms: ["year to date return", "ytd return", "year-to-date"]
+    definition: "Year-to-date return (net of fees)"
+    example: "12.5%"
 
   - name: one_year_return
-    synonyms: ["one year return", "12 month return"]
-    definition: "Return over the past 12 months"
-    example: "12.3%"
+    synonyms: ["one year return", "12 month return", "1-year return", "trailing 12 months"]
+    definition: "Return over the past 12 months (net of fees)"
+    example: "15.3%"
 
-  - name: expense_ratio
-    synonyms: ["expense ratio", "expense" ]
-    definition: "Fund expense ratio (percentage of assets used to cover operating expenses)"
-    example: "0.85%"
+  - name: three_year_return
+    synonyms: ["three year return", "3-year return", "three year average"]
+    definition: "Annualized return over the past 3 years (net of fees)"
+    example: "11.8%"
 
-  - name: net_flows
-    synonyms: ["net flows", "net inflows", "net outflows"]
-    definition: "Net investor flows into or out of the fund during the period"
-    example: "$150,000,000"
+  - name: five_year_return
+    synonyms: ["five year return", "5-year return", "five year average"]
+    definition: "Annualized return over the past 5 years (net of fees)"
+    example: "10.2%"
 
-  - name: turnover_ratio
-    synonyms: ["turnover", "portfolio turnover"]
-    definition: "Portfolio turnover ratio"
-    example: "25%"
+  - name: inception_to_date_return
+    synonyms: ["inception return", "since inception", "lifetime return", "annualized return since inception"]
+    definition: "Annualized return from fund inception to date (net of fees)"
+    example: "9.7%"
 
-  - name: max_drawdown
-    synonyms: ["maximum drawdown", "max drawdown"]
-    definition: "Maximum observed loss from a peak to a trough"
-    example: "-10.5%"
+  # Benchmark Comparison
+  - name: benchmark_name
+    synonyms: ["benchmark", "index", "comparison index", "benchmark index"]
+    definition: "Name of the benchmark index used for performance comparison"
+    example: "S&P 500 Total Return Index"
 
-  - name: benchmark_return
-    synonyms: ["benchmark return", "index return"]
-    definition: "Return of the fund benchmark for the same period"
+  - name: benchmark_return_qtd
+    synonyms: ["benchmark return", "index return", "benchmark qtd return"]
+    definition: "Benchmark return for the quarter"
     example: "3.8%"
 
+  - name: benchmark_return_ytd
+    synonyms: ["benchmark return ytd", "index return ytd"]
+    definition: "Benchmark return year-to-date"
+    example: "11.2%"
+
+  - name: benchmark_return_one_year
+    synonyms: ["benchmark one year", "index one year"]
+    definition: "Benchmark return over the past 12 months"
+    example: "14.1%"
+
+  - name: excess_return
+    synonyms: ["excess return", "outperformance", "performance vs benchmark"]
+    definition: "Fund return minus benchmark return (excess return over benchmark)"
+    example: "1.4%"
+
+  # Risk-Adjusted Performance Metrics
   - name: sharpe_ratio
-    synonyms: ["sharpe", "sharpe ratio"]
-    definition: "Sharpe ratio (risk-adjusted return)"
-    example: "0.95"
+    synonyms: ["sharpe", "sharpe ratio", "risk-adjusted return"]
+    definition: "Sharpe ratio (return per unit of risk, based on standard deviation)"
+    example: "1.25"
 
   - name: alpha
-    synonyms: []
-    definition: "Manager alpha vs benchmark"
-    example: "0.5"
+    synonyms: ["alpha", "jensen's alpha", "active return", "manager alpha"]
+    definition: "Manager alpha vs benchmark - excess return not explained by beta"
+    example: "1.2%"
 
   - name: beta
-    synonyms: []
-    definition: "Beta (fund sensitivity to market movements)"
-    example: "0.9"
+    synonyms: ["beta", "market beta", "sensitivity"]
+    definition: "Beta (fund sensitivity to market movements relative to benchmark)"
+    example: "0.95"
+
+  - name: correlation_to_benchmark
+    synonyms: ["correlation", "r-squared", "correlation coefficient"]
+    definition: "Correlation of fund returns to benchmark returns"
+    example: "0.87"
+
+  - name: standard_deviation
+    synonyms: ["standard deviation", "volatility", "annualized volatility"]
+    definition: "Annualized standard deviation of returns (measure of volatility)"
+    example: "12.4%"
+
+  # Drawdown Metrics
+  - name: max_drawdown
+    synonyms: ["maximum drawdown", "max drawdown", "worst drawdown", "peak to trough"]
+    definition: "Maximum observed loss from a peak to a trough during the period"
+    example: "-8.3%"
+
+  - name: current_drawdown
+    synonyms: ["current drawdown", "drawdown from peak"]
+    definition: "Current drawdown from the all-time or period high"
+    example: "-2.1%"
+
+  # Cash Flow Metrics
+  - name: net_flows
+    synonyms: ["net flows", "net inflows", "net outflows", "fund flows", "investor flows"]
+    definition: "Net investor flows into or out of the fund during the period"
+    example: "$125,000,000"
+
+  - name: inflows
+    synonyms: ["inflows", "investor inflows", "deposits"]
+    definition: "Total investor inflows into the fund during the period"
+    example: "$200,000,000"
+
+  - name: outflows
+    synonyms: ["outflows", "investor outflows", "redemptions", "withdrawals"]
+    definition: "Total investor outflows from the fund during the period"
+    example: "$75,000,000"
+
+  # Cost and Fee Metrics
+  - name: expense_ratio
+    synonyms: ["expense ratio", "expense", "annual expenses", "operating expenses"]
+    definition: "Annual fund expense ratio (percentage of assets used to cover operating expenses)"
+    example: "0.65%"
+
+  - name: management_fee
+    synonyms: ["management fee", "advisor fee", "advisory fee"]
+    definition: "Annual management fee charged by the fund manager"
+    example: "0.50%"
+
+  - name: total_fees
+    synonyms: ["total fees", "total fees charged", "fees deducted"]
+    definition: "Total dollar amount of fees deducted during the period"
+    example: "$1,850,000"
+
+  # Portfolio Composition & Activity
+  - name: turnover_ratio
+    synonyms: ["turnover", "portfolio turnover", "turnover rate"]
+    definition: "Portfolio turnover ratio (percentage of portfolio replaced annually)"
+    example: "35%"
+
+  - name: number_of_holdings
+    synonyms: ["number of holdings", "holdings count", "portfolio holdings"]
+    definition: "Total number of securities held in the portfolio"
+    example: "245"
+
+  - name: dividend_yield
+    synonyms: ["dividend yield", "yield", "income yield"]
+    definition: "Weighted average dividend yield of the portfolio"
+    example: "1.8%"
+
+  - name: price_to_earnings_ratio
+    synonyms: ["price to earnings", "p/e ratio", "pe ratio"]
+    definition: "Weighted average price-to-earnings ratio of the portfolio"
+    example: "18.5"
+
+  # Income & Distributions
+  - name: dividend_income
+    synonyms: ["dividend income", "dividends", "dividend received"]
+    definition: "Total dividends received during the period"
+    example: "$2,350,000"
+
+  - name: interest_income
+    synonyms: ["interest income", "interest", "interest received"]
+    definition: "Total interest income received during the period"
+    example: "$850,000"
+
+  - name: realized_gains
+    synonyms: ["realized gains", "capital gains", "gains"]
+    definition: "Realized capital gains from securities sold during the period"
+    example: "$3,200,000"
+
+  - name: realized_losses
+    synonyms: ["realized losses", "capital losses", "losses"]
+    definition: "Realized capital losses from securities sold during the period"
+    example: "-$1,100,000"
+
+  # Attribution Analysis
+  - name: asset_allocation_return
+    synonyms: ["asset allocation", "allocation return", "allocation effect"]
+    definition: "Return contribution from asset allocation decisions"
+    example: "0.5%"
+
+  - name: security_selection_return
+    synonyms: ["security selection", "selection return", "stock picking"]
+    definition: "Return contribution from security selection decisions"
+    example: "1.1%"
+
+  # Peer Comparison Metrics
+  - name: percentile_ranking
+    synonyms: ["percentile", "rank", "peer rank", "performance rank"]
+    definition: "Percentile ranking relative to peer funds in same category"
+    example: "25th percentile"
+
+  - name: peer_comparison_return
+    synonyms: ["peer average", "category average", "peer return"]
+    definition: "Average return of peer funds in the same category"
+    example: "13.8%"
+
+  # Risk Metrics
+  - name: duration
+    synonyms: ["duration", "interest rate duration"]
+    definition: "Portfolio duration (for fixed income portfolios)"
+    example: "4.2 years"
+
+  - name: credit_quality
+    synonyms: ["credit quality", "average credit rating"]
+    definition: "Average credit quality/rating of the portfolio"
+    example: "BBB+"
+
+  - name: recovery_time
+    synonyms: ["recovery time", "time to recovery"]
+    definition: "Time required to recover from maximum drawdown"
+    example: "3 months"
+
